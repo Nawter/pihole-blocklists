@@ -1,0 +1,42 @@
+# Title: Free Proxy Sites Blocklist
+# Description: Blocks free web proxies / site unblockers and free proxy-list providers
+# Format: domain-per-line (Pi-hole adlist compatible)
+# Last updated: 2026-07-18
+# Entries: 33
+#
+# Complements (does not replace) Hagezi's DoH/VPN/Proxy bypass list:
+#   https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh-vpn-proxy-bypass-onlydomains.txt
+
+4everproxy.com
+911proxy.com
+advanced.name
+blockaway.net
+browser.lol
+croxyproxy.com
+croxyproxy.net
+croxyproxy.rocks
+filterbypass.me
+fineproxy.org
+floppydata.com
+free.geonix.com
+geonode.com
+hide.me
+hide.mn
+hidemy.name
+hidemyass.com
+hidester.com
+jsmcentral.org
+kproxy.com
+nodemaven.com
+proxy5.net
+proxyium.com
+proxynova.com
+proxyorb.com
+proxyscrape.com
+proxysite.com
+spys.one
+unblockyoutube.video
+webshare.io
+weboproxy.com
+wproxy.net
+youtubeunblocked.live

@@ -1,10 +1,13 @@
-# Pi-hole Temp Email Sites Blocklist
+# Pi-hole Blocklists
 
-Blocks the **websites** of temporary/disposable email services (temp mail, 10 minute mail, fake mail generators, edu mail generators) at the DNS level.
+DNS blocklists for Pi-hole:
+
+- **`temp-email-sites.txt`** — websites of temporary/disposable email services (temp mail, 10 minute mail, fake mail generators, edu mail generators)
+- **`free-proxy-sites.txt`** — free web proxies / site unblockers (CroxyProxy and friends) and free proxy-list providers (Webshare, Geonode, ProxyScrape…)
 
 ## Usage
 
-Add the raw URL of `temp-email-sites.txt` as an adlist in Pi-hole
+Add the raw URL of each list as an adlist in Pi-hole
 (**Admin → Lists** in v6, **Group Management → Adlists** in v5), then update gravity:
 
 ```
@@ -13,12 +16,13 @@ pihole -g
 
 ## Scope
 
-This list blocks the service **frontends** people visit to get a throwaway inbox. It complements — does not replace — the lists that cover the disposable **email domains** themselves:
+These lists block the service **frontends** people visit. They complement — do not replace — the bigger maintained lists:
 
-- https://github.com/disposable-email-domains/disposable-email-domains
-- https://github.com/7c/fakefilter
+- https://github.com/disposable-email-domains/disposable-email-domains (disposable email domains)
+- https://github.com/7c/fakefilter (disposable email domains, larger)
+- https://github.com/hagezi/dns-blocklists (`doh-vpn-proxy-bypass` — DoH resolvers, VPN and proxy endpoints)
 
-Use all three together.
+Use them together.
 
 The commented-out "aggressive" section at the bottom of the list contains domains that also break legitimate products (Internxt, AdGuard, alias services). Uncomment at your own risk.
 
