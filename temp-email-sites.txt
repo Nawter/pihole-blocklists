@@ -1,0 +1,69 @@
+# Title: Temp Email Sites Blocklist
+# Description: Blocks temporary/disposable email website frontends (temp mail, 10 minute mail, fake/edu mail generators)
+# Format: domain-per-line (Pi-hole adlist compatible)
+# Last updated: 2026-07-18
+# Entries: 53
+#
+# Complements (does not replace) lists that cover the email domains themselves:
+#   https://raw.githubusercontent.com/disposable-email-domains/disposable-email-domains/main/disposable_email_blocklist.conf
+#   https://raw.githubusercontent.com/7c/fakefilter/main/txt/data.txt
+
+10-minutemail.org
+10minemail.com
+10minutemail.com
+10minutemail.net
+anonibox.com
+boomlify.com
+burnermailbox.com
+disp-mail.com
+dispostable.com
+edumail.me
+emailfake.com
+emailondeck.com
+etempmail.com
+fake-email.pro
+fakemailgenerator.com
+freecustom.email
+generator.email
+guerrillamail.com
+imail.edu.vn
+likemail.com
+mail.tm
+maildrop.cc
+mails.org
+mailwave.dev
+minuteinbox.com
+mohmal.com
+mtempmail.com
+newtrashmail.com
+postinbox.org
+reusable.email
+studentemail.pro
+temp-mail.io
+temp-mail.org
+tempail.com
+tempemail.cc
+tempgbox.net
+tempgmailer.com
+tempmail.ninja
+tempmail.pw
+tempmaillab.com
+tempmailo.com
+temporarymail.com
+temppostal.com
+tempumail.com
+tmailor.com
+toolpix.pythonanywhere.com
+trash-mail.com
+trashbox.email
+trashlify.com
+web-library.net
+xeramail.com
+yopmail.com
+zymail.pythonanywhere.com
+
+# --- Aggressive (uncomment at your own risk: these also break legit products) ---
+# internxt.com          # cloud storage company; temp mail is one page of their site
+# adguard.com           # adblock vendor; hosts AdGuard Temp Mail
+# addy.io               # persistent email alias service (not strictly temp mail)
+# relay.firefox.com     # Firefox Relay alias service
