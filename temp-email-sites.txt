@@ -1,65 +1,132 @@
 # Title: Temp Email Sites Blocklist
 # Description: Blocks temporary/disposable email website frontends (temp mail, 10 minute mail, fake/edu mail generators)
 # Format: domain-per-line (Pi-hole adlist compatible)
-# Last updated: 2026-07-18
-# Entries: 53
+# Last updated: 2026-07-27
+# Entries: 120
 #
 # Complements (does not replace) lists that cover the email domains themselves:
 #   https://raw.githubusercontent.com/disposable-email-domains/disposable-email-domains/main/disposable_email_blocklist.conf
 #   https://raw.githubusercontent.com/7c/fakefilter/main/txt/data.txt
-
+#
 10-minutemail.org
 10minemail.com
 10minutemail.com
 10minutemail.net
+22.do
+5min.email
+5minmail.com
 anonibox.com
+anonymmail.net
+awsl.uk
 boomlify.com
 burnermailbox.com
+cleantempmail.com
 disp-mail.com
+disposablemail.com
+dispose.lol
 dispostable.com
+dropmail.me
 edumail.me
+email-fake.com
 emailfake.com
+emailnator.com
 emailondeck.com
+emailtemp.org
 etempmail.com
 fake-email.pro
+fakemail.net
 fakemailgenerator.com
+firetempmail.com
 freecustom.email
+freetemporarymail.com
 generator.email
 guerrillamail.com
 imail.edu.vn
+inboxes.com
+instantmail.online
 likemail.com
+livetempmail.com
+mail.chatgpt.org.uk
+mail.cx
+mail.td
 mail.tm
 maildrop.cc
+mailinator.com
+mailporary.com
 mails.org
+mailsac.com
+mailsdrop.com
+mailtemp.uk
+mailticking.com
+mailtmp.com
 mailwave.dev
 minuteinbox.com
+moakt.com
 mohmal.com
 mtempmail.com
 newtrashmail.com
+od2.in
+onetimemail.com.au
+openinbox.io
+passbymail.com
+pinmx.com
 postinbox.org
+priyo.email
 reusable.email
+smailpro.com
 studentemail.pro
+temp-inbox.me
+temp-mail.ai
+temp-mail.app
+temp-mail.asia
 temp-mail.io
 temp-mail.org
 tempail.com
+tempamail.com
+tempbox.app
 tempemail.cc
 tempgbox.net
 tempgmailer.com
+tempinbox.xyz
+tempmail.co
+tempmail.co.uk
+tempmail.digital
+tempmail.edu.ge
+tempmail.im
+tempmail.ing
+tempmail.la
+tempmail.lol
 tempmail.ninja
+tempmail.plus
 tempmail.pw
+tempmail.so
+tempmail.world
+tempmail100.com
+tempmail3.com
+tempmailbox.net
+tempmailg.com
+tempmailgb.com
 tempmaillab.com
 tempmailo.com
+tempmailpro.io
+temporary-email.org
+temporary-mail.net
 temporarymail.com
 temppostal.com
 tempumail.com
+tempzap.com
+tinyhost.shop
 tmailor.com
+tmaily.com
 toolpix.pythonanywhere.com
 trash-mail.com
 trashbox.email
 trashlify.com
+vanishinbox.com
 web-library.net
 xeramail.com
 yopmail.com
+zenvex.dev
 zymail.pythonanywhere.com
 
 # --- Aggressive (uncomment at your own risk: these also break legit products) ---
@@ -67,3 +134,4 @@ zymail.pythonanywhere.com
 # adguard.com           # adblock vendor; hosts AdGuard Temp Mail
 # addy.io               # persistent email alias service (not strictly temp mail)
 # relay.firefox.com     # Firefox Relay alias service
+# simplelogin.io        # Proton alias service (privacy tool, not disposable mail)

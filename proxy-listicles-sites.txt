@@ -1,0 +1,36 @@
+# Title: Proxy Listicle Sites Blocklist (OPT-IN)
+# Description: News/blog sites blocked only because they publish 'top N free proxy' articles
+# Format: domain-per-line (Pi-hole adlist compatible)
+# Last updated: 2026-07-27
+# Entries: 25
+#
+# OPT-IN. These are general tech-news and blog sites, not proxy services.
+# They are here because their proxy listicles are how users find proxies.
+# Subscribing to this list WILL block legitimate reading material.
+# Do not add it unless that is what you want.
+#
+affjournal.com
+aimultiple.com
+blackdown.org
+bleepingcomputer.com
+cloudwards.net
+fearless-assassins.com
+geekersmagazine.com
+geeksmint.com
+hackernoon.com
+historytools.org
+makeuseof.com
+marketingscoop.com
+mokoweb.com
+pctechmag.com
+peoplesrepublicofcork.com
+privacysavvy.com
+quertime.com
+sitepoint.com
+softwaretestinghelp.com
+techgyd.com
+technibble.com
+techradar.com
+thezerohack.com
+twinstrata.com
+webdesigndev.com

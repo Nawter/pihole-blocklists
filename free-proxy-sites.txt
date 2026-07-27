@@ -1,42 +1,100 @@
 # Title: Free Proxy Sites Blocklist
-# Description: Blocks free web proxies / site unblockers and free proxy-list providers
+# Description: Blocks free web proxies / site unblockers, free proxy-list providers and commercial proxy/scraping vendors
 # Format: domain-per-line (Pi-hole adlist compatible)
-# Last updated: 2026-07-18
-# Entries: 33
+# Last updated: 2026-07-27
+# Entries: 91
 #
 # Complements (does not replace) Hagezi's DoH/VPN/Proxy bypass list:
 #   https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh-vpn-proxy-bypass-onlydomains.txt
-
+#
 4everproxy.com
 911proxy.com
 advanced.name
 blockaway.net
+blueproxy.org
+brightdata.com
 browser.lol
+browserless.io
+coproxy.io
 croxyproxy.com
 croxyproxy.net
 croxyproxy.rocks
+decodo.com
+dicloak.com
+ffproxyserver.net
 filterbypass.me
 fineproxy.org
 floppydata.com
+flyproxy.com
+free-proxy-list.net
+free-proxy.cz
 free.geonix.com
+freeproxy.world
+freeproxylist.cc
+freevpn.com
+freevpnplanet.com
+geonix.com
 geonode.com
 hide.me
 hide.mn
+hidemium.io
 hidemy.name
 hidemyass.com
 hidester.com
+hidester.one
+ipfighter.com
+iproyal.com
+ipspeed.info
 jsmcentral.org
 kproxy.com
+libertyshield.com
+litport.net
+lumiproxy.com
+naproxy.com
 nodemaven.com
+octobrowser.net
+one-vv5693.com
+openproxylist.com
+owlproxy.com
+oxylabs.io
+pinguproxy.com
+proxifier.com
+proxifly.dev
+proxifree.com
+proxy-123.com
+proxy-seller.com
 proxy5.net
+proxybros.com
+proxycompass.com
+proxydb.net
+proxyfreeonly.com
+proxygratis.id
 proxyium.com
+proxykuy.com
 proxynova.com
 proxyorb.com
+proxypal.net
+proxyrack.com
+proxysale.biz
 proxyscrape.com
 proxysite.com
+proxysp.com
+proxyway.com
+roundproxies.com
+scraperapi.com
+scrapingpass.com
+smartdnsproxy.com
 spys.one
+steganos.com
+stormycloud.org
+telegramvpn.org
 unblockyoutube.video
+urban-vpn.com
+vpnbook.com
+vpnoverview.com
+vpsfreehosting.com
 weboproxy.com
 webshare.io
+whoerip.com
 wproxy.net
 youtubeunblocked.live

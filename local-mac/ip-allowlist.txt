@@ -1,0 +1,9 @@
+# IP prefixes that must NEVER be blocked, whatever the scraped sources say.
+# Matched as a literal string prefix: "160.79." covers all of 160.79.*.*
+# Used by refresh-ips.py. Add a line here the moment something breaks.
+
+160.79.        # Anthropic - api.anthropic.com, claude.ai, console.anthropic.com
+             # (this exact range was in the scraped data and broke Claude Code)
+
+# Add your own below, e.g. your corporate VPN gateway:
+# 203.0.113.   # example: office VPN concentrator

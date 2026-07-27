@@ -1,0 +1,62 @@
+# Title: Allowlist (never block these)
+# Description: Domains that must resolve even if a blocklist or upstream adlist covers them
+# Format: domain-per-line
+# Last updated: 2026-07-27
+#
+# tools/qa.py (make qa) FAILS the build if any of these is matched by our own lists
+# or regex, so a bad entry can never reach Pi-hole. Apply with scripts/deploy.sh,
+# which loads every line here into Pi-hole's exact allowlist.
+#
+# Allowlist beats blocklist in Pi-hole: an exact allow entry wins over gravity
+# AND over regex blocks. This is the escape hatch when a deployment breaks something.
+
+# --- AI / developer tooling (blocking these breaks Claude Code, CI, installs) ---
+anthropic.com
+api.anthropic.com
+claude.ai
+console.anthropic.com
+statsig.anthropic.com
+github.com
+api.github.com
+raw.githubusercontent.com
+objects.githubusercontent.com
+codeload.github.com
+ghcr.io
+npmjs.com
+registry.npmjs.org
+pypi.org
+files.pythonhosted.org
+docker.com
+registry-1.docker.io
+production.cloudflare.docker.com
+
+# --- OS / vendor infrastructure ---
+apple.com
+swcdn.apple.com
+gdmf.apple.com
+icloud.com
+microsoft.com
+login.microsoftonline.com
+office.com
+office365.com
+outlook.com
+live.com
+google.com
+googleapis.com
+gstatic.com
+mozilla.org
+
+# --- Work tools (this machine runs GlobalProtect, Zoom, Teams) ---
+paloaltonetworks.com
+gpcloudservice.com
+zoom.us
+slack.com
+atlassian.net
+dropbox.com
+
+# --- CDNs / DNS: shared infrastructure, blocking takes out unrelated sites ---
+cloudflare.com
+cdn77.org
+akamaized.net
+fastly.net
+cloudfront.net
