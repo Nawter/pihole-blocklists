@@ -1,4 +1,4 @@
-.PHONY: help build qa test check deploy hosts-on hosts-off pf-on pf-off refresh-ips clean
+.PHONY: help build qa check deploy hosts-on hosts-off pf-on pf-off refresh-ips refresh-upstream clean
 .DEFAULT_GOAL := help
 
 PY ?= python3
@@ -11,10 +11,6 @@ build:  ## regenerate expanded/ and regex.txt from the source lists
 
 qa:  ## run the QA suite (gates deploy; exits non-zero on failure)
 	@$(PY) tools/qa.py
-
-test:  ## same checks under pytest, one test case per check (pip install pytest)
-	@$(PY) -m pytest tools/qa.py -q 2>/dev/null || \
-	 { echo "pytest not installed -- falling back to 'make qa'"; $(PY) tools/qa.py; }
 
 check:  ## diagnose: make check DOMAIN=foo.com, or make check DNS=192.168.1.5
 	@bash scripts/check.sh $(or $(DOMAIN),$(DNS))
@@ -39,6 +35,9 @@ status:  ## what is currently active on this Mac
 
 refresh-ips:  ## re-scrape firewall/proxy-ips.txt (FULL=1 for the ~43k version)
 	@$(PY) local-mac/refresh-ips.py $(if $(FULL),--full,)
+
+refresh-upstream:  ## fetch hagezi's list (~90k hostnames) for hosts-on (local-mac only)
+	@$(PY) local-mac/refresh-upstream.py
 
 clean:  ## remove Python caches (expanded/ and regex.txt are COMMITTED -- never deleted)
 	@rm -rf tools/__pycache__

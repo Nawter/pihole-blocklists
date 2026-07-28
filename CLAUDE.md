@@ -10,10 +10,12 @@ thin glue over system commands.
 ## Commands
 
 - Build: `make build` — regenerate `expanded/` + `regex.txt` from the sources
-- QA: `make qa` — 18 checks, gates deploy; `make test` for the pytest form
+- QA: `make qa` — 18 checks, gates deploy
 - Diagnose: `make check DOMAIN=foo.com` or `make check DNS=<pihole-ip>`
 - Deploy (on the Pi-hole host): `make deploy`
 - Single Mac: `make hosts-on|hosts-off|pf-on|pf-off|status|refresh-ips`
+- Mac upstream layer: `make refresh-upstream` — hagezi for `/etc/hosts`
+  (Pi-hole subscribes to hagezi as an adlist instead; see README "Scope")
 
 ## How to talk to the user
 
@@ -52,7 +54,9 @@ the standing request.
   dangling include makes pf load nothing at boot.
 - **`refresh-ips.py` must never write an empty or Anthropic-containing
   list.** The 0-kept abort and the `160.79.` assert stay; writes stay
-  atomic (`os.replace`).
+  atomic (`os.replace`). Same rules for `refresh-upstream.py`, which must
+  also keep filtering against `allowlist.txt` + CRITICAL, and `hosts-on`
+  keeps its critical-host abort as the last line of defense.
 - **`deploy.sh` is add-only by design** and must keep printing its stale-
   regex report — it never auto-deletes Pi-hole entries (users' own
   `(\.|^)…$` patterns are indistinguishable from ours).

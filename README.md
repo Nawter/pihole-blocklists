@@ -147,7 +147,7 @@ git commit -am "add foo.com"
 | Expanded lists | every base domain survives expansion; no allowlisted or critical host present; still well formed |
 | Freshness | derived files are in sync with the sources (`build.py --check`) |
 
-Run them with `make qa`, or `make test` for one pytest case per check.
+Run them with `make qa`.
 
 The critical smoke test is deliberately hardcoded in `tools/lists.py` rather than read from `allowlist.txt` — if someone deletes a line from the allowlist, the smoke test still catches it.
 
@@ -159,14 +159,18 @@ See [`local-mac/README.md`](local-mac/README.md). Short version:
 
 ```bash
 make build
-make hosts-on      # domains via /etc/hosts
-make pf-on         # IPs via pf (optional)
+make refresh-upstream   # optional: hagezi's ~90k hostnames for /etc/hosts
+make hosts-on           # domains via /etc/hosts (~10.5k, ~100k with upstream)
+make pf-on              # IPs via pf (optional)
 make status
 ```
 
 `local-mac/` uses `expanded/` because `/etc/hosts` has no wildcards, and it carries
 `refresh-ips.py` so `firewall/proxy-ips.txt` can be regenerated from scratch on any
-machine — the repo is self-contained.
+machine — the repo is self-contained. `make refresh-upstream` is the Mac-only
+substitute for subscribing to hagezi: Pi-hole takes hagezi as an adlist (see
+[Scope](#scope)), but `/etc/hosts` can't subscribe to anything, so the list is
+fetched, prefix-expanded and included by `hosts-on` instead.
 
 ## Scope
 
@@ -176,7 +180,22 @@ These lists block service **frontends**. They complement — do not replace — 
 - [disposable-email-domains](https://github.com/disposable-email-domains/disposable-email-domains) — the email domains themselves
 - [7c/fakefilter](https://github.com/7c/fakefilter) — same, larger
 
-Note hagezi ships **wildcard format** (bare domains, for blockers that expand subdomains themselves). That's correct for Pi-hole adlists combined with its regex table; it is *not* usable as-is in `/etc/hosts`.
+### Adding hagezi to Pi-hole
+
+Pi-hole subscribes to it directly — nothing to generate or vendor. In the web UI (Admin → Lists in v6, Group Management → Adlists in v5) paste:
+
+```
+https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/doh-vpn-proxy-bypass.txt
+```
+
+Or from the Pi-hole host:
+
+```bash
+pihole -a adlist add https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/doh-vpn-proxy-bypass.txt "hagezi doh-vpn-proxy-bypass"
+pihole -g
+```
+
+Use the **`domains/`** URL for Pi-hole adlists, not `wildcard/`. Hagezi's `wildcard/` files are bare registrable domains for blockers that expand subdomains themselves; the `domains/` files carry the subdomains explicitly, which is what the adlist parser expects. Combined with this repo's regex table you get full coverage either way. Neither format is usable as-is in `/etc/hosts` — that's what `make refresh-upstream` is for on a Mac (see below).
 
 ## Deliberately not included
 

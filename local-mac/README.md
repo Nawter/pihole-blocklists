@@ -8,11 +8,12 @@ Everything here is self-contained: clone the repo on any Mac, run two commands, 
 git clone https://github.com/Nawter/pihole-blocklists.git
 cd pihole-blocklists
 make build                                  # generate expanded/ + regex.txt
+make refresh-upstream                       # optional: fetch hagezi (~90k hostnames)
 sudo bash local-mac/macblock.sh hosts-on    # block the domains
 bash local-mac/macblock.sh status           # confirm
 ```
 
-That's the whole thing. `hosts-on` writes ~10.5k hostnames (~11.7k with the opt-in listicles list) into `/etc/hosts` between `# BEGIN pihole-blocklists` markers. It only ever touches its own marked block — entries written by other tools are left alone.
+That's the whole thing. `hosts-on` writes this repo's ~10.5k hostnames (~11.7k with the opt-in listicles list) into `/etc/hosts` between `# BEGIN pihole-blocklists` markers — **~100k total if you ran `make refresh-upstream` first** (see below). It only ever touches its own marked block — entries written by other tools are left alone.
 
 ## Commands
 
@@ -24,6 +25,7 @@ That's the whole thing. `hosts-on` writes ~10.5k hostnames (~11.7k with the opt-
 | `sudo bash macblock.sh pf-on` | load the IP list into the pf firewall |
 | `sudo bash macblock.sh pf-off` | unload it |
 | `python3 refresh-ips.py` | refresh `../firewall/proxy-ips.txt` from the internet |
+| `python3 refresh-upstream.py` | fetch hagezi's list for `hosts-on` (`make refresh-upstream`) |
 
 `hosts-on` and `hosts-off` are **idempotent**. They replace one marked block rather than appending, so running `hosts-on` five times leaves you with one copy, not five. Every run backs up to `/etc/hosts.bak.<timestamp>` first.
 
@@ -44,6 +46,19 @@ grep -x '<hostname>' ../expanded/*.txt      # is it even in the list?
 ```
 
 If it's missing, add the base domain to the relevant `../*-sites.txt`, then `make -C .. build && sudo bash macblock.sh hosts-on`.
+
+## The upstream layer (`refresh-upstream`) — hagezi in `/etc/hosts`
+
+Pi-hole users subscribe to [hagezi's doh-vpn-proxy-bypass list](https://github.com/hagezi/dns-blocklists) as an adlist and it refreshes itself. `/etc/hosts` can't subscribe to anything, so this folder fetches it instead:
+
+```bash
+make refresh-upstream        # or: python3 local-mac/refresh-upstream.py
+sudo bash macblock.sh hosts-on
+```
+
+That downloads hagezi's ~17.6k wildcard domains, expands each registrable one with the prefixes people actually hit (`www free proxy blog app my web`), filters out everything in `../allowlist.txt` and the hardcoded critical set, and writes `upstream-hosts.txt` (~90k hostnames). `hosts-on` includes the file automatically whenever it exists.
+
+The file is **gitignored, not committed** — hagezi updates weekly, so each Mac fetches its own fresh copy. Re-run `make refresh-upstream` now and then to pick up hagezi's changes; a failed fetch leaves the existing file untouched.
 
 ## The IP layer (`pf-on`) — optional, and read this first
 
@@ -140,4 +155,4 @@ line to `/etc/pf.conf` pointing at that directory, delete it: `pf-on` writes its
 - **Browser DoH bypasses `/etc/hosts` entirely.** Chrome and Firefox "Secure DNS" resolve names themselves. If a blocked site loads, check that setting before assuming the list is wrong.
 - **No wildcards.** Covered above — a Mac limitation, not a bug in the lists.
 - **Per-machine.** Every Mac needs its own install. Pi-hole covers a whole network from one place; that's the reason to prefer it if you have somewhere to run it.
-- **No upstream lists.** Pi-hole users subscribe to [hagezi's](https://github.com/hagezi/dns-blocklists) ~17.6k VPN/proxy/DoH domains as an extra adlist. This folder only applies *this repo's* ~10.5k hostnames, so coverage is genuinely narrower here. Pulling hagezi into `/etc/hosts` would mean vendoring and expanding a list that updates weekly — deliberately not done.
+- **Upstream lists need a manual refresh.** Pi-hole's hagezi adlist updates itself on every `pihole -g`; here, hagezi coverage only changes when you re-run `make refresh-upstream`. Without that step, `hosts-on` applies only this repo's ~10.5k hostnames. Pulling hagezi into `/etc/hosts` would mean vendoring and expanding a list that updates weekly — deliberately not done.

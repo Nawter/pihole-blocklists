@@ -36,6 +36,11 @@ hosts_source() {
   else
     echo "no expanded/ lists found -- run: make build" >&2; exit 1
   fi
+  # upstream layer (hagezi, ~90k hostnames) -- local-mac only; fetch with:
+  # make refresh-upstream. Pi-hole users subscribe to hagezi as an adlist instead.
+  if [ -f "$HERE/upstream-hosts.txt" ]; then
+    strip "$HERE/upstream-hosts.txt"
+  fi
 }
 
 case "${1:-}" in
@@ -78,15 +83,25 @@ hosts-on)
     index($0,e)==1 {skip=0; next}
     skip {next}
     1' /etc/hosts > "$TMP"
+  BLOCK=$(mktemp)
+  hosts_source | sort -u > "$BLOCK"
+  # Belt on top of the generators' own filtering: never block a critical host.
+  if grep -qxE 'api\.anthropic\.com|claude\.ai|github\.com|apple\.com|icloud\.com' "$BLOCK"; then
+    echo "ABORT: a critical host is in the block list -- refusing to write /etc/hosts"
+    rm -f "$TMP" "$BLOCK"; exit 1
+  fi
   {
     echo "$MARK_BEGIN (generated $STAMP - edit the repo lists, not this block)"
-    hosts_source | sort -u | sed 's/^/0.0.0.0 /'
+    sed 's/^/0.0.0.0 /' "$BLOCK"
     echo "$MARK_END"
   } >> "$TMP"
   cat "$TMP" > /etc/hosts    # cat not mv: preserves owner and permissions
-  rm -f "$TMP"
+  rm -f "$TMP" "$BLOCK"
   dscacheutil -flushcache; killall -HUP mDNSResponder
   echo "/etc/hosts: $(grep -c '^0\.0\.0\.0' /etc/hosts) domains blocked"
+  if [ ! -f "$HERE/upstream-hosts.txt" ]; then
+    echo "tip: 'make refresh-upstream' adds hagezi's ~90k VPN/proxy/DoH hostnames to this block"
+  fi
   ;;
 
 hosts-off)
