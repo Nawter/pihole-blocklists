@@ -225,10 +225,5 @@
 (\.|^)flirtify\.com$
 (\.|^)friday-ad\.co\.uk$
 (\.|^)mirami\.chat$
-<<<<<<< HEAD
-(\.|^)proton\.me$
-(\.|^)protonvpn\.com$
-=======
->>>>>>> ae3dd18e0ab965db9b8991cc675bb3a528bf070d
 (\.|^)rumble\.com$
 (\.|^)vivastreet\.co\.uk$
