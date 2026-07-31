@@ -24,11 +24,19 @@ CHECK = "--check" in sys.argv
 STALE = []
 
 
+DATE_LINE = re.compile(r"^# Last updated: .*$", flags=re.M)
+
+
 def emit(rel, text):
-    """Write unless --check, in which case just record a mismatch."""
+    """Write unless --check, in which case just record a mismatch.
+
+    A file whose only difference is the '# Last updated:' stamp is left
+    alone -- otherwise every build on a new day rewrites every derived
+    file, and two machines fight over date-only diffs forever.
+    """
     p = L.path(rel)
     old = open(p).read() if os.path.exists(p) else None
-    if old == text:
+    if old is not None and DATE_LINE.sub("", old) == DATE_LINE.sub("", text):
         return False
     if CHECK:
         STALE.append(rel)
