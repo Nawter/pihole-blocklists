@@ -271,6 +271,34 @@ Then deploy to Pi-hole (`scripts/deploy.sh`) or to a single Mac
 (`local-mac/macblock.sh hosts-on`). To tear down: `pihole disable`, or
 `sudo bash local-mac/macblock.sh hosts-off && sudo bash local-mac/macblock.sh pf-off`.
 
+
+## Restricting or Disabling Tor in Brave via Folder Permissions
+
+You can change permissions or restrict the Tor folder in Brave by locating the
+browser's profile directory on your operating system and modifying folder access
+or permissions via the command line. ([source](https://community.brave.app/t/how-to-disable-tor-browser-permanent/470734))
+
+### Finding the Tor Directory
+
+- **Windows:** `%LOCALAPPDATA%\BraveSoftware\Brave-Browser\User Data`
+- **macOS:** `~/Library/Application Support/BraveSoftware/Brave-Browser`
+- **Linux:** `~/.config/BraveSoftware/Brave-Browser`
+
+Sources: [cleanbrowsing](https://cleanbrowsing.org/support/troubleshooting/disable-tor-brave),
+[GitHub issue #454](https://github.com/brave/brave-browser/issues/454),
+[Brave Community](https://community.brave.app/t/how-to-disable-tor-browser-permanent/470734)
+
+### Modifying Permissions
+
+- **Close Brave:** Ensure the browser is completely shut down before altering files.
+- **Locate Tor files:** Find the specific Tor profile or executable subfolder inside
+  your user data profile path.
+- **Remove permissions (Linux/macOS):** Run a terminal command such as `chmod -rwx tor`
+  on the target directory to revoke read, write, and execute permissions if you want
+  to block Tor functionality.
+- **Adjust security properties (Windows):** Right-click the folder, go to
+  **Properties > Security**, and edit user/administrator permissions to restrict access.
+
 ## Known limits
 
 - **Browser DoH bypasses Pi-hole entirely.** Chrome and Firefox "Secure DNS" resolve names themselves. If a site loads despite being blocked, check that first. Blocking DoH endpoints (hagezi's list, or firewalling port 853) is the counter.
