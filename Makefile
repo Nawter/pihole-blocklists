@@ -6,7 +6,7 @@ PY ?= python3
 help:  ## show this help
 	@grep -hE '^[a-z-]+:.*?##' $(MAKEFILE_LIST) | sed 's/:.*##/\t/' | expand -t22
 
-build:  ## regenerate expanded/ and regex.txt from the source lists
+build:  ## regenerate expanded/ and regex.txt; sorts the source lists in place
 	@$(PY) tools/build.py
 
 qa:  ## run the QA suite (gates deploy; exits non-zero on failure)

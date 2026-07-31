@@ -72,7 +72,7 @@ def _dupes():
 @check("every list is sorted")
 def _sorted():
     bad = [f for f in L.ALL_LISTS if L.read(f) != sorted(L.read(f))]
-    return f"not sorted (run build.py): {bad}" if bad else None
+    return f"not sorted (run 'make build' -- it sorts the source lists in place): {bad}" if bad else None
 
 
 @check("'# Entries:' header matches actual count")
