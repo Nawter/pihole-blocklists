@@ -2,7 +2,6 @@
 # Description: News/blog sites blocked only because they publish 'top N free proxy' articles
 # Format: domain-per-line (Pi-hole adlist compatible)
 # Last updated: 2026-07-27
-# Entries: 25
 #
 # OPT-IN. These are general tech-news and blog sites, not proxy services.
 # They are here because their proxy listicles are how users find proxies.

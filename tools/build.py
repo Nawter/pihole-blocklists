@@ -7,8 +7,8 @@
 
 The source of truth is one bare domain per line. Everything else is a mechanical
 derivation of it; without a build step you maintain three files and they drift.
-The sources themselves are normalized too (sorted, honest '# Entries:' header),
-so appending a domain anywhere and running build is enough.
+The sources themselves are sorted in place too, so appending a domain
+anywhere and running build is enough.
 
   python3 tools/build.py          rebuild everything
   python3 tools/build.py --check  fail if anything is out of date (no writes)
@@ -97,7 +97,7 @@ def build_expanded():
 
 
 def normalize_sources():
-    """Sort each source list's domains and keep its '# Entries:' header honest.
+    """Sort each source list's domains in place.
 
     Comment and blank lines stay where they are; each contiguous run of
     domain lines between them is sorted in place, so hand-appended entries
@@ -117,11 +117,9 @@ def normalize_sources():
                 if line is not None:
                     out.append(line)
         new = "\n".join(out) + "\n"
-        n = len(L.read(f))
-        new = re.sub(r"^# Entries: .*$", f"# Entries: {n}", new, count=1, flags=re.M)
         if new != txt:
             if CHECK:
-                STALE.append(f"{f} (sorting / Entries: header)")
+                STALE.append(f"{f} (sorting)")
             else:
                 open(p, "w").write(new)
 

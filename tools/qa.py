@@ -75,17 +75,6 @@ def _sorted():
     return f"not sorted (run 'make build' -- it sorts the source lists in place): {bad}" if bad else None
 
 
-@check("'# Entries:' header matches actual count")
-def _counts():
-    out = []
-    for f in L.ALL_LISTS:
-        m = re.search(r"^# Entries: (\d+)", open(L.path(f)).read(), re.M)
-        actual = len(L.read(f))
-        if not m or int(m.group(1)) != actual:
-            out.append(f"{f}: header {m.group(1) if m else 'missing'} vs actual {actual}")
-    return "; ".join(out) or None
-
-
 @check("no domain appears in two core lists")
 def _cross():
     seen, dup = set(), set()

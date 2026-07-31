@@ -2,7 +2,6 @@
 # Description: Blocks temporary/disposable email website frontends (temp mail, 10 minute mail, fake/edu mail generators)
 # Format: domain-per-line (Pi-hole adlist compatible)
 # Last updated: 2026-07-27
-# Entries: 120
 #
 # Complements (does not replace) lists that cover the email domains themselves:
 #   https://raw.githubusercontent.com/disposable-email-domains/disposable-email-domains/main/disposable_email_blocklist.conf

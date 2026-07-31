@@ -2,7 +2,6 @@
 # Description: Blocks free web proxies / site unblockers, free proxy-list providers and commercial proxy/scraping vendors
 # Format: domain-per-line (Pi-hole adlist compatible)
 # Last updated: 2026-07-27
-# Entries: 93
 #
 # Complements (does not replace) Hagezi's DoH/VPN/Proxy bypass list:
 #   https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh-vpn-proxy-bypass-onlydomains.txt

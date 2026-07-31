@@ -125,7 +125,7 @@ pihole disable 5m
 
 ```bash
 $EDITOR free-proxy-sites.txt     # one bare domain per line, no scheme, no path
-make build            # regenerate expanded/ + regex.txt, sort sources, refresh headers
+make build            # regenerate expanded/ + regex.txt, sort sources
 make qa               # must pass
 git commit -am "add foo.com"
 ```
@@ -139,7 +139,7 @@ git commit -am "add foo.com"
 | Group | Checks |
 |---|---|
 | Format | bare lowercase domains only; no schemes/paths/ports/wildcards; no raw IPs |
-| Hygiene | no duplicates, sorted, `Entries:` header matches, no domain in two core lists |
+| Hygiene | no duplicates, sorted, no domain in two core lists |
 | Public suffix | hard-fails if a bare TLD or a suffix like `co.uk` is ever blocked |
 | Allowlist integrity | nothing both blocked and allowed; **no regex pattern matches an allowlisted domain** |
 | Critical smoke test | 24 hardcoded must-resolve hosts, checked against exact lists *and* every regex |
