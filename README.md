@@ -124,8 +124,8 @@ pihole disable 5m
 ## Editing the lists
 
 ```bash
-$EDITOR free-proxy-sites.txt     # one bare domain per line, sorted, no scheme, no path
-make build            # regenerate expanded/ + regex.txt, refresh headers
+$EDITOR free-proxy-sites.txt     # one bare domain per line, no scheme, no path
+make build            # regenerate expanded/ + regex.txt, sort sources, refresh headers
 make qa               # must pass
 git commit -am "add foo.com"
 ```

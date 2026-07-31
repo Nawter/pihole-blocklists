@@ -2,19 +2,21 @@
 # Description: Blocks adult and random video-chat frontends
 # Format: domain-per-line (Pi-hole adlist compatible)
 # Last updated: 2026-07-27
+<<<<<<< HEAD
 # Entries: 9
+=======
+# Entries: 7
+>>>>>>> ae3dd18e0ab965db9b8991cc675bb3a528bf070d
 #
 # flirtify.com serves a DNS wildcard: every subdomain resolves. Exact-match
 # adlists cannot cover it -- the regex.txt entry is what actually blocks it.
 #
-flirtify.com
-mirami.chat
-vivastreet.co.uk
-rumble.com
-friday-ad.co.uk
-protonvpn.com
 chromewebstore.google.com
-proton.me
 dailymotion.com
+flirtify.com
+friday-ad.co.uk
+mirami.chat
+rumble.com
+vivastreet.co.uk
 
 
