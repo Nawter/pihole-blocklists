@@ -74,6 +74,8 @@ sudo bash scripts/deploy.sh
 
 `deploy.sh` runs the QA suite first and **refuses to touch Pi-hole if QA fails**. It loads the allowlist *before* the regex, so there's never a window where a critical domain is blocked.
 
+This is not one-and-done: the adlist URLs refresh themselves on every `pihole -g`, but the regex table doesn't — re-run `make deploy` on the Pi-hole host whenever the repo's lists change (see "Editing the lists").
+
 **3. Verify**, from any machine using the Pi-hole as its resolver:
 
 ```bash
@@ -129,6 +131,13 @@ $EDITOR free-proxy-sites.txt     # one bare domain per line, no scheme, no path
 make build            # regenerate expanded/ + regex.txt, sort sources
 make qa               # must pass
 git commit -am "add foo.com"
+git push
+```
+
+Then, on the Pi-hole host — the regex table doesn't update itself:
+
+```bash
+git pull && make deploy
 ```
 
 `make build` never touches `firewall/proxy-ips.txt` — that file is regenerated separately with `make refresh-ips` (see `local-mac/refresh-ips.py`).
