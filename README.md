@@ -19,6 +19,7 @@ DNS blocklists for Pi-hole covering **temp-email services, free proxies/VPNs, an
 | `Makefile` | front door — `make help` lists everything |
 | `local-mac/` | run the same lists on a single Mac with no Pi-hole |
 
+
 ## The three forms, and which to use
 
 Every list exists in three shapes because Pi-hole treats them differently:
@@ -185,13 +186,13 @@ These lists block service **frontends**. They complement — do not replace — 
 Pi-hole subscribes to it directly — nothing to generate or vendor. In the web UI (Admin → Lists in v6, Group Management → Adlists in v5) paste:
 
 ```
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/doh-vpn-proxy-bypass.txt
+https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/doh-vpn-proxy-bypass.txt
 ```
 
 Or from the Pi-hole host:
 
 ```bash
-pihole -a adlist add https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/doh-vpn-proxy-bypass.txt "hagezi doh-vpn-proxy-bypass"
+pihole -a adlist add https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/doh-vpn-proxy-bypass.txt "hagezi doh-vpn-proxy-bypass"
 pihole -g
 ```
 
