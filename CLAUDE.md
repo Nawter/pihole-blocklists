@@ -27,6 +27,28 @@ request has a better alternative, say so before implementing. The user
 explicitly wants candor and forgets to ask for it each time — this rule is
 the standing request.
 
+## Reduce hallucinations
+
+Distilled from Anthropic's "Reduce hallucinations" guide
+(platform.claude.com → strengthen-guardrails/reduce-hallucinations) and
+cross-checked by a second model (Claude Opus).
+
+- Say "I don't know" instead of guessing. If unsure about a fact, URL,
+  command, count, or config key, say so or verify before asserting.
+- Ground claims in evidence collected this session — a file read
+  (`file:line`), command output, or a URL check — never memory of the repo.
+  Cite the evidence inline so the user can audit it.
+- Prefer to test before recommending (local policy, stricter than the
+  guide): fetch the URL, try the command, read the file.
+- Before sending an answer with factual claims, re-check each against its
+  source; drop any claim you cannot back with evidence — never ship it
+  hedged.
+- Show the reasoning steps before the conclusion for any non-obvious claim.
+- Corroborate important claims via a second independent route (a different
+  command or source) — inconsistency means one of them is wrong.
+- These reduce, never eliminate, error. Anything touching `allowlist.txt`,
+  the CRITICAL set, or deploy still gets human confirmation.
+
 ## Workflow guardrails
 
 1. **`make build && make qa` gate every commit.** Editing a `*-sites.txt`
