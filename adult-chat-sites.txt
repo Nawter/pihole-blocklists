@@ -6,8 +6,10 @@
 # flirtify.com serves a DNS wildcard: every subdomain resolves. Exact-match
 # adlists cannot cover it -- the regex.txt entry is what actually blocks it.
 #
+baidu.com
 chromewebstore.google.com
 dailymotion.com
+duckduckgo.com
 flirtify.com
 friday-ad.co.uk
 mirami.chat
