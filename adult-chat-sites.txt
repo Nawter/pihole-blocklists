@@ -7,13 +7,22 @@
 # adlists cannot cover it -- the regex.txt entry is what actually blocks it.
 #
 baidu.com
+bilibili.com
+bilibili.tv
 chromewebstore.google.com
 dailymotion.com
+deezer.com
 duckduckgo.com
+flirtify.cc
 flirtify.com
 friday-ad.co.uk
 mirami.chat
+ok.ru
 rumble.com
+sexymeet.com
+sexymeet.tv
+soundcloud.com
+tokyvideo.com
 vivastreet.co.uk
-
+weibo.com
 
